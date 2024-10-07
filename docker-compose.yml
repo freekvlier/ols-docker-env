@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mariadb:11.4
+    image: arm64v8/mariadb:11.5.2
     logging:
       driver: none
     command: ["--max-allowed-packet=512M"]
@@ -15,7 +15,7 @@ services:
     networks:
       - default
   litespeed:
-    image: litespeedtech/openlitespeed:${OLS_VERSION}-${PHP_VERSION}
+    image: ghcr.io/ndigitals/openlitespeed:latest
     container_name: litespeed
     env_file:
       - .env
@@ -37,7 +37,7 @@ services:
     networks:
       - default
   phpmyadmin:
-    image: bitnami/phpmyadmin:5.2.0-debian-11-r43
+    image: arm64v8/phpmyadmin:5.2.1 
     ports:
       - 8080:8080
       - 8443:8443
@@ -47,7 +47,7 @@ services:
     networks:
       - default
   redis:
-    image: "redis:alpine"
+    image: arm64v8/redis:7.4
     logging:
       driver: none
     # command: redis-server --requirepass 8b405f60665e48f795752e534d93b722
